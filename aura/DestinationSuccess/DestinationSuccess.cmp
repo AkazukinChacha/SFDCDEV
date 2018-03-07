@@ -1,0 +1,5 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickActionWithoutHeader" access="global" >
+
+<ui:outputURL value="https://www.salesforce.com/campaign/destination-success/overview/" label="Destination Success Registration" target="_blank"/>
+
+</aura:component>

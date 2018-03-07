@@ -1,0 +1,9 @@
+<apex:page sidebar="false" showHeader="false">
+    <h1>
+        Hello the world
+    </h1>
+    <p>{! IF( CONTAINS('salesforce.com','force.com'), 
+     'Yep', 'Nope') }</p>
+<p>{! IF( DAY(TODAY()) < 15, 
+     'Before the 15th', 'The 15th or after') }</p>
+</apex:page>

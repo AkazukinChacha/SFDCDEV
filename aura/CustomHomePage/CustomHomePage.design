@@ -1,0 +1,10 @@
+<design:component label="Two Column Custom App Page Template">
+    <flexipage:template >
+        <!-- The default width for the "left" region is "MEDIUM". In tablets,
+        the width is "SMALL" -->
+        	<flexipage:region name="top" defaultWidth="LARGE"/>
+            <flexipage:region name="bottom" defaultWidth="SMALL" />
+        	<flexipage:region name="bottom2" defaultWidth="SMALL" />
+        	<flexipage:region name="bottom3" defaultWidth="SMALL" />
+       </flexipage:template>
+</design:component>

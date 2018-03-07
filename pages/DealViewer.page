@@ -1,0 +1,86 @@
+<apex:page standardController="Contact" extensions="DealViewerExtension" standardStylesheets="true">
+    <apex:sectionHeader title="DealViewer" subtitle="{!Contact.Name}"/>
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton value="Done" action="{!done}"/>
+            </apex:pageBlockButtons>
+            <!-- Error label message -->
+            <apex:messages />
+            <!-- Today's Deal Summary -->
+            <apex:pageBlockSection title="Today's Deal Summary" collapsible="false" columns="2"
+                                   id="currentSessionBlock">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Today’s Acceptance Rate"/>
+                    <apex:outputText value=" {0, number, 00%}">
+                        <apex:param value="{!currentAcceptance}"/>
+                    </apex:outputText>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Today’s Deals Reviewed"/>  {!currentReviewed}
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Today’s Deals Accepted"/>  {!currentDealsAccepted}
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Today’s Deals Rejected"/> {!currentDealsRejected}
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Today’s Deals Available"/> {!currentDealsAvailable}
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Total Deal Summary -->
+            <apex:pageBlockSection title="Total Deal Summary" collapsible="false" id="totalBlock">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Acceptance Rate"/>
+                    <apex:outputText value=" {0, number, 00%}">
+                        <apex:param value="{!totalAcceptance}"/>
+                    </apex:outputText>
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Deals Accepted"/>  {!totalDealsAccepted}
+                </apex:pageBlockSectionItem>
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Deals Rejected"/>  {!totalDealsRejected}
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+            <!-- Deals -->
+            <apex:pageBlockSection title="Deals" collapsible="false" columns="1" id="dealTable">
+                <apex:pageBlockTable value="{!relatedDealActions}" var="deal_action" width="100%" rows="5">
+                    <apex:column headerValue="Action">
+                        <apex:commandButton value="Accept" action="{!accept}"
+                                            rerender="dealTable,currentSessionBlock,totalBlock"
+                                            disabled="{!Or(deal_action.Action__c=='Accepted',deal_action.Action__c=='Rejected')}">
+                            <apex:param name="actionNumber" value="{!deal_action.Name}"/>
+                        </apex:commandButton>
+                        <apex:commandButton value="Reject" action="{!reject}"
+                                            rerender="dealTable,currentSessionBlock,totalBlock"
+                                            disabled="{!Or(deal_action.Action__c=='Accepted',deal_action.Action__c=='Rejected')}">
+                            <apex:param name="actionNumber" value="{!deal_action.Name}"/>
+                        </apex:commandButton>
+                    </apex:column>
+                    <apex:column headerValue="Status">
+                            {!IF(deal_action.Action__c=='', "Available", deal_action.Action__c)}
+                    </apex:column>
+                    <apex:column headerValue="Deal Name" value="{!deal_action.Deal__r.Name}"/>
+                    <apex:column headerValue="Valid Through" value="{!deal_action.Deal__r.Valid_Through__c}"/>
+                    <apex:column headerValue="Available Deals" value="{!deal_action.Deal__r.Available_Deals__c}"/>
+                </apex:pageBlockTable>
+                <apex:outputPanel rendered="{!relatedDealActions.size > 0}">
+                    <div style="text-align: center">
+                        <apex:commandButton value="|< First" action="{!setController.first}"
+                                            disabled="{!Not(setController.hasPrevious)}"/>
+                        <apex:commandButton value="< Prev" action="{!setController.previous}"
+                                            disabled="{!Not(setController.hasPrevious)}"/>
+                        &nbsp;Page {!(setController.pageNumber)} of {!numberOfPages}&nbsp;
+                        <apex:commandButton value="Next >" action="{!setController.next}" disabled="{!Not(setController.hasNext)}"/>
+                        <apex:commandButton value="Last >|" action="{!setController.last}" disabled="{!Not(setController.hasNext)}"/>
+                    </div>
+                </apex:outputPanel>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+    <apex:pagemessages />
+</apex:page>

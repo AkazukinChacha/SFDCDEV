@@ -1,0 +1,20 @@
+        "version" : "20.0",
+        "label" : "Winter '11",
+        "url" : "/services/data/v20.0"
+    },
+    {
+        "version" : "21.0",
+        "label" : "Spring '11",
+        "url" : "/services/data/v21.0"
+    },
+    {
+        "version" : "33.0",
+        "label" : "Winter '13",
+        "url" : "/services/data/v26.0"
+    },
+    {
+     "version" : "26.0",
+     "label" : "Winter '13",
+     "url" : "/services/data/v26.0"
+    }
+]

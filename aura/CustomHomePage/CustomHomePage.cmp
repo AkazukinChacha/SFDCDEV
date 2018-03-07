@@ -1,0 +1,32 @@
+<aura:component implements="lightning:homeTemplate" description="Custom HP">
+    <aura:attribute name="top" type="Aura.Component[]" />
+    <aura:attribute name="bottom" type="Aura.Component[]" />
+    <aura:attribute name="bottom2" type="Aura.Component[]" />
+    <aura:attribute name="bottom3" type="Aura.Component[]" />
+
+    <div>
+        <lightning:layout horizontalAlign="spread">
+            <lightning:layoutItem flexibility="grow"
+                                  class="slds-m-right_small">
+                {!v.top}
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+    <div>
+    	<lightning:layout horizontalAlign="spread">
+            <lightning:layoutItem flexibility="grow"
+                                  class="slds-m-right_small">
+                {!v.bottom}
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="grow"
+                                  class="slds-m-right_small">
+                {!v.bottom2}
+            </lightning:layoutItem>
+            <lightning:layoutItem flexibility="grow"
+                                  class="slds-m-right_small">
+                {!v.bottom3}
+            </lightning:layoutItem>
+        </lightning:layout>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,22 @@
+<!--
+ - Created by charlottew on 8/8/2017.
+ -->
+
+<apex:page id="camping" controller="NewCaseListController">
+        <apex:includeScript value="/lightning/lightning.out.js" />
+
+        <script>
+        $Lightning.use("c:campingapplication", function() {
+            $Lightning.createComponent(
+                "c:camping",
+                {},
+                "theLead",
+                function(cmp) {
+                    console.log("Component created!");
+                    console.log(cmp);
+                });
+            });
+    </script>
+
+        <div id="theLead"></div>
+</apex:page>

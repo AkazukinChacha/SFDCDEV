@@ -1,0 +1,7 @@
+<!--
+ - Created by charlottew on 3/22/2017.
+ -->
+
+<aura:component description="helloWorld">
+    <H1>Hello World</H1>
+</aura:component>

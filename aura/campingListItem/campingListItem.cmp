@@ -1,0 +1,22 @@
+<!--
+ - Created by charlottew on 3/22/2017.
+ -->
+
+<aura:component description="campingListItem">
+    <aura:attribute name="item" type="Camping_Item__c" required="true"/>
+
+    <p>
+        <ui:outputText value="{!v.item.Name}"/>
+    </p>
+    <p>
+        <ui:outputNumber value="{!v.item.Quantity__c}"/>
+    </p>
+    <p>
+        <ui:outputCurrency value="{!v.item.Price__c}"/>
+    </p>
+    <p>
+        <ui:outputCheckbox value="{!v.item.Packed__c}"/>
+    </p>
+    <p><ui:button label="Packed!" press="{!c.packItem}"/></p>
+
+</aura:component>
